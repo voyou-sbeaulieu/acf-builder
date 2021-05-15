@@ -95,7 +95,15 @@ class GroupBuilder extends FieldBuilder
     {
         return call_user_func_array([$this->fieldsBuilder, $method], $args);
     }
-    
+
+    /**
+     * @return NamedBuilder[] field configs
+     */
+    public function getFields()
+    {
+        return $this->fieldsBuilder->getFields();
+    }
+
     /**
      * Remove a field by name
      * @param  string $name Field to remove
@@ -104,8 +112,18 @@ class GroupBuilder extends FieldBuilder
     public function removeField($name)
     {
         $this->fieldsBuilder->removeField($name);
-        
+
         return $this;
+    }
+
+    /**
+     * Return a field by name
+     * @param  string $name field name
+     * @return FieldBuilder
+     */
+    public function getField($name)
+    {
+        return $this->fieldsBuilder->getField($name);
     }
 
     /**
@@ -120,7 +138,7 @@ class GroupBuilder extends FieldBuilder
      */
     public function modifyField($name, $modify)
     {
-       
+
         $this->fieldsBuilder->modifyField($name, $modify);
 
         return $this;
